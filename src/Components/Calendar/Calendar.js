@@ -1,128 +1,59 @@
 import React, { Component } from 'react';
 import './Calendar.css';
+import 'react-day-picker/lib/style.css';
 import '../helpers/getMonthy';
-import getDates from '../helpers/getMonthy';
+import DayPicker from 'react-day-picker';
 
 class Calendar extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      days: []
+      selectedDay: undefined,
+      headers: ['Time', 'Silent', 'Small', 'Medium', 'Large', 'Event'],
+      rooms: ['Silent', 'Small', 'Medium', 'Large', 'Event'],
+      time: [8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22],
+      bookings: [{ time: 3, user: 'davidka', room: 'Silent' },
+      { time: 5, user: 'milos', room: 'Large' }
+      ]
     }
+    this.handleDayClick = this.handleDayClick.bind(this);
   }
 
-  componentDidMount() {
-    const dates = getDates(new Date(2019, 1, 1), new Date(2019, 1, 31));
-
-    this.setState({
-      days: dates
-    })
+  handleDayClick(day) {
+    this.setState({ selectedDay: day });
   }
 
   render() {
     return (
       <div className='calendar-container'>
-        <h2>date</h2>
+        <DayPicker onDayClick={this.handleDayClick} />
+        {this.state.selectedDay ? (
+          <h2>{this.state.selectedDay.toLocaleDateString()}</h2>
+        ) : (
+            <h2>Please select a day.</h2>
+          )}
         <table>
           <thead>
             <tr>
-              <th>Time</th>
-              <th>Silent Room</th>
-              <th>Small</th>
-              <th>Medium</th>
-              <th>Large</th>
-              <th>Event Space</th>
+              {this.state.headers.map(room => {
+                return <th>{room}</th>
+              })}
             </tr>
           </thead>
           <tbody>
-            <tr>
-              <td>8.00-9.00</td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
-            </tr>
-            <tr>
-              <td>9.00-10.00</td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
-            </tr>
-            <tr>
-              <td>10.00-11.00</td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
-            </tr>
-            <tr>
-              <td>11.00-12.00</td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
-            </tr>
-            <tr>
-              <td>12.00-13.00</td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
-            </tr>
-            <tr>
-              <td>14.00-15.00</td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
-            </tr>
-            <tr>
-              <td>16.00-17.00</td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
-            </tr>
-            <tr>
-              <td>18.00-19.00</td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
-            </tr>
-            <tr>
-              <td>19.00-20.00</td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
-            </tr>
-            <tr>
-              <td>20.00-21.00</td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
-            </tr>
-            <tr>
-              <td>21.00-22.00</td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
-            </tr>
+            {this.state.time.map((time, rowIndex) => {
+              return <tr key={rowIndex}><td>{time}</td>
+                {this.state.rooms.map((room, index) => {
+                  console.log(index)
+                  if (this.state.bookings[1].time === rowIndex && this.state.bookings[1].room === room) {
+                    return <td>{this.state.bookings[1].user}</td>
+                  } else {
+                    return <td>{rowIndex}</td>
+                  }
+
+                })}
+              </tr>
+            })}
           </tbody>
         </table>
       </div>
@@ -132,4 +63,3 @@ class Calendar extends Component {
 }
 
 export default Calendar;
-
