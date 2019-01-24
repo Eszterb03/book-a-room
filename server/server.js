@@ -1,16 +1,15 @@
-const Room = require('../models/room');
-const Booking = require('../models/booking')
 const mongoose = require("mongoose");
 const express = require("express");
 const bodyParser = require("body-parser");
 
+const Room = require('./models/room');
+const Booking = require('./models/booking');
 
 const PORT = 3001;
 const app = express();
 const router = express.Router();
 
-// this is our MongoDB database
-const dbRoute = "mongodb://Gabor:gabor2019@ds111455.mlab.com:11455/bookaroom";
+const dbRoute = require('./config');
 
 // connects our back end code with the database
 mongoose.connect(
