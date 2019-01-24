@@ -40,4 +40,16 @@ app.get('/rooms/:name', (req, res) => {
         }
         res.json(room)
     });
+})
+
+// Delete a booking
+app.delete('/rooms/:id', (req, res) => {
+    const { id } = req.params
+    Room.findByIdAndDelete({ _id: id })
+        .then(room => {
+            res.status(201).json(room)
+        })
+        .catch(error => {
+            res.status(400).json({ error })
+        })
 });
