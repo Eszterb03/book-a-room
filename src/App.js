@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import Calendar from './components/Calendar/Calendar'
 import Header from './components/Header/Header';
 import ModalForm from './components/ModalForm';
 import BigCalendar from 'react-big-calendar';
