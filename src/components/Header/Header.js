@@ -1,12 +1,11 @@
 import React from 'react';
 import { Button } from '../Button/Button'
-import './Header.css';
 
 export default class Header extends React.Component {
   render() {
     return (
       <nav className="navbar">
-      Book-a-Room
+        Book-a-Room
         <div className="container">
           <Button name="Silent Room" />
           <Button name="Small" />
@@ -16,8 +15,8 @@ export default class Header extends React.Component {
           <Button name="Meeting Room" />
 
         </div>
-      <div>
-        Sign out
+        <div>
+          Sign out
       </div>
       </nav>
     )
