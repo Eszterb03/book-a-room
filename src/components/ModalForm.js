@@ -27,7 +27,7 @@ const Modal = ({
           name='room'
           onChange={onChange}
         >
-          <option value='Silent Room' />
+          <option value=''>- select a room -</option>
           <option value='Silent Room'>Silent Room</option>
           <option value='S Room'>S Room</option>
           <option value='M Room'>M Room</option>
@@ -42,6 +42,7 @@ const Modal = ({
           name='time'
           type='number'
           onChange={onChange}
+          required
         />
 
         <div className='btn-container'>
