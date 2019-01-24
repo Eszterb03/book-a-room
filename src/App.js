@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import Calendar from './components/Calendar/Calendar'
 import Header from './components/Header/Header';
 import ModalForm from './components/ModalForm';
 import BigCalendar from 'react-big-calendar';
@@ -12,20 +11,23 @@ class App extends Component {
     this.state = {
       formModalOn: false,
       selectedDay: undefined,
-      events: [{
-        'title': 'ROOM L',
-        'allDay': false,
-        'start': new Date('Thu Jan 24 2019 20:00:00'),
-        'end': new Date('Febr 24, 2019 21:00:00'),
-      },
-      {
-        'title': 'Silent Room',
-        'allDay': false,
-        'start': new Date('Fri Jan 18 2019 12:00:00 GMT+0100 (Central European Standard Time)'),
-        'end': new Date('January 26, 2019 11:00:00'),
-      },
+      events: [
+        {
+          title: 'ROOM L',
+          allDay: false,
+          start: new Date('Thu Jan 24 2019 20:00:00'),
+          end: new Date('Febr 24, 2019 21:00:00')
+        },
+        {
+          title: 'Silent Room',
+          allDay: false,
+          start: new Date(
+            'Fri Jan 18 2019 12:00:00 GMT+0100 (Central European Standard Time)'
+          ),
+          end: new Date('January 26, 2019 11:00:00')
+        }
       ]
-    }
+    };
     this.triggerFormModal = this.triggerFormModal.bind(this);
     this.handleDayClick = this.handleDayClick.bind(this);
     this.handleChange = this.handleChange.bind(this);
@@ -60,16 +62,15 @@ class App extends Component {
       end: selectedDay.toString()
     };
 
-    console.log(selectedDay.toString())
+    console.log(selectedDay.toString());
     this.triggerFormModal();
   }
 
   render() {
     const localizer = BigCalendar.momentLocalizer(moment);
     return (
-      <div className="App">
-
-        {this.state.formModalOn &&
+      <div className='App'>
+        {this.state.formModalOn && (
           <ModalForm
             selectedDay={this.state.selectedDay}
             handleDayClick={this.handleDayClick}
@@ -77,7 +78,7 @@ class App extends Component {
             onClick={this.triggerFormModal}
             onChange={this.handleChange}
           />
-        }
+        )}
 
         <Header />
         <div className='big-calendar-container'>
@@ -92,8 +93,7 @@ class App extends Component {
         </div>
         <button className='button' onClick={this.triggerFormModal}>
           New Reservation
-          </button>
-
+        </button>
       </div>
     );
   }
