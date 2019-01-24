@@ -54,15 +54,21 @@ class App extends Component {
   handleFormSubmit(event) {
     event.preventDefault();
     let { time, room, selectedDay } = this.state;
+    let day = selectedDay.toString();
+    day = day.substring(0, day.length - 50);
+    const endDate = parseInt(time) + 1;
 
     const obj = {
       title: room,
       allDay: false,
-      start: selectedDay.toString(),
-      end: selectedDay.toString()
+      start: new Date(day + time.toString() + ':00:00'),
+      end: new Date(day + endDate.toString() + ':00:00')
     };
 
-    console.log(selectedDay.toString());
+    console.log(obj);
+    this.setState({
+      events: [...this.state.events, obj]
+    });
     this.triggerFormModal();
   }
 
