@@ -5,7 +5,7 @@ export default class Header extends React.Component {
   render() {
     return (
       <nav className="navbar">
-        Book-a-Room
+        <span className='navbar-element'>Book-a-Room</span>
         <div className="container">
           <Button name="Silent Room" />
           <Button name="Small" />
@@ -16,8 +16,8 @@ export default class Header extends React.Component {
 
         </div>
         <div>
-          Sign out
-      </div>
+          <span className='navbar-element'>Sign out</span>
+        </div>
       </nav>
     )
   }
