@@ -37,6 +37,7 @@ class App extends Component {
       });
   }
 
+
   triggerFormModal() {
     this.setState({
       formModalOn: !this.state.formModalOn
@@ -62,16 +63,19 @@ class App extends Component {
     const endDate = parseInt(time) + 1;
 
     const obj = {
-      title: room,
+      room: room,
       allDay: false,
-      start: new Date(day + time.toString() + ':00:00'),
-      end: new Date(day + endDate.toString() + ':00:00')
+      start: day + time.toString() + ':00:00',
+      end: day + endDate.toString() + ':00:00'
     };
 
-    console.log(obj);
-    this.setState({
-      events: [...this.state.events, obj]
+
+    fetch('http://localhost:3001/book', {
+      method: 'post',
+      headers: new Headers({ 'Content-Type': 'application/json' }),
+      body: JSON.stringify(obj)
     });
+
     this.triggerFormModal();
   }
 
