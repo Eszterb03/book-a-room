@@ -32,12 +32,12 @@ button {
   margin: 10px;
 }
 
-@media screen and (max-width: 1366px) {
+@media (min-width: 1280px) and (max-width: 1366px){
   .modal-form {
     width: 680px;
     display: flex;
     flex-wrap: wrap;
-    top: 15%;
+    top: 10%;
   }
 }
 
