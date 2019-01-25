@@ -11,20 +11,23 @@ class App extends Component {
     this.state = {
       formModalOn: false,
       selectedDay: undefined,
-      events: [{
-        'title': 'ROOM L',
-        'allDay': false,
-        'start': new Date('Thu Jan 24 2019 20:00:00'),
-        'end': new Date('Febr 24, 2019 21:00:00'),
-      },
-      {
-        'title': 'Silent Room',
-        'allDay': false,
-        'start': new Date('Fri Jan 18 2019 12:00:00 GMT+0100 (Central European Standard Time)'),
-        'end': new Date('January 26, 2019 11:00:00'),
-      },
+      events: [
+        {
+          title: 'ROOM L',
+          allDay: false,
+          start: new Date('Thu Jan 24 2019 20:00:00'),
+          end: new Date('Febr 24, 2019 21:00:00')
+        },
+        {
+          title: 'Silent Room',
+          allDay: false,
+          start: new Date(
+            'Fri Jan 18 2019 12:00:00 GMT+0100 (Central European Standard Time)'
+          ),
+          end: new Date('January 26, 2019 11:00:00')
+        }
       ]
-    }
+    };
     this.triggerFormModal = this.triggerFormModal.bind(this);
     this.handleDayClick = this.handleDayClick.bind(this);
     this.handleChange = this.handleChange.bind(this);
@@ -51,24 +54,29 @@ class App extends Component {
   handleFormSubmit(event) {
     event.preventDefault();
     let { time, room, selectedDay } = this.state;
+    let day = selectedDay.toString();
+    day = day.substring(0, day.length - 50);
+    const endDate = parseInt(time) + 1;
 
     const obj = {
       title: room,
       allDay: false,
-      start: selectedDay.toString(),
-      end: selectedDay.toString()
+      start: new Date(day + time.toString() + ':00:00'),
+      end: new Date(day + endDate.toString() + ':00:00')
     };
 
-    console.log(selectedDay.toString())
+    console.log(obj);
+    this.setState({
+      events: [...this.state.events, obj]
+    });
     this.triggerFormModal();
   }
 
   render() {
     const localizer = BigCalendar.momentLocalizer(moment);
     return (
-      <div className="App">
-
-        {this.state.formModalOn &&
+      <div className='App'>
+        {this.state.formModalOn && (
           <ModalForm
             selectedDay={this.state.selectedDay}
             handleDayClick={this.handleDayClick}
@@ -76,7 +84,7 @@ class App extends Component {
             onClick={this.triggerFormModal}
             onChange={this.handleChange}
           />
-        }
+        )}
 
         <Header />
         <div className='big-calendar-container'>
@@ -91,8 +99,7 @@ class App extends Component {
         </div>
         <button className='button' onClick={this.triggerFormModal}>
           New Reservation
-          </button>
-
+        </button>
       </div>
     );
   }
