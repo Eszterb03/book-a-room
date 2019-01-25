@@ -34,12 +34,9 @@ exports.createBooking = (req, res) => {
         foundRoom.bookings.push(booking);
 
         booking.save(function(err){
-          console.log(foundRoom)
           if (err) {
-            console.log(err)
             return res.status(400).send({ errors: [{ title: 'Error', detail: 'Error while saving booking' }] });
           }
-          console.log(booking)
           foundRoom.save();
 
           return res.json({ start: booking.start, end: booking.end, title: booking.title });
