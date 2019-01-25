@@ -20,6 +20,15 @@ db.once("open", () => console.log("connected to the database"));
   
 app.use(bodyParser());
 app.listen(PORT, () => console.log("Running"));
+
+app.get('/rooms', (req, res) => {
+  Room.find({}).select('booking').populate('bookings').exec((err, rooms) => {
+    if (err) {
+      return res.status(400).send({ errors: [{ title: 'Error', detail: 'Error while searching for room' }] });
+    }
+    return res.json(rooms)
+  });
+});
   
 app.get('/rooms/:name', (req, res) => {
   const roomName = req.params.name;
