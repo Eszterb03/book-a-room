@@ -1,6 +1,9 @@
 const mongoose = require("mongoose");
 const express = require("express");
 const bodyParser = require("body-parser");
+
+const cors = require('cors');
+
 const passport = require("passport");
 const auth = require("./auth");
 const secret = require("./const");
@@ -8,6 +11,7 @@ const GoogleStrategy = require('passport-google-oauth20').Strategy;
 const cookieParser = require('cookie-parser');
 const session = require('express-session');
 const path = require('path');
+
 
 const controllers = require('./controllers/index');
 
@@ -17,16 +21,17 @@ const app = express();
 const config = require('./config');
 mongoose.connect(
   config.dbRoute, { useNewUrlParser: true }
-  );
-  
+);
+
 const db = mongoose.connection;
 db.once("open", () => console.log("connected to the database"));
-  
+
+app.use(cors());
 app.use(bodyParser());
 app.listen(PORT, () => console.log("Running"));
 
 app.get('/rooms', controllers.getRooms);
-  
+
 app.get('/room/:name', controllers.getRoom);
 
 app.post('/book', controllers.createBooking);

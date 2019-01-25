@@ -15,16 +15,24 @@ class App extends Component {
         {
           title: 'ROOM L',
           allDay: false,
-          start: new Date('Thu Jan 24 2019 20:00:00'),
-          end: new Date('Febr 24, 2019 21:00:00')
+          start: new Date('Thu Jan 24 2019 14:00:00'),
+          end: new Date('Jan 24, 2019 15:00:00')
         },
         {
           title: 'Silent Room',
           allDay: false,
           start: new Date(
-            'Fri Jan 18 2019 12:00:00 GMT+0100 (Central European Standard Time)'
+            'Fri Jan 26 2019 12:00:00 GMT+0100 (Central European Standard Time)'
           ),
-          end: new Date('January 26, 2019 11:00:00')
+          end: new Date('Jan 26, 2019 15:00:00')
+        },
+        {
+          title: 'Event Space',
+          allDay: false,
+          start: new Date(
+            '2019-01-26T16:00:00.000Z'
+          ),
+          end: new Date('2019-01-26T17:00:00.000Z')
         }
       ]
     };
