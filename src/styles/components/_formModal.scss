@@ -2,24 +2,25 @@
   display: flex;
   justify-content: space-between;
   position: fixed;
-  z-index: 500;
+  z-index: 700;
   background-color: white;
-  width: 70%;
+  width: 700px;
+  height: 500px;
   border: 1px solid #ccc;
   box-shadow: 1px 1px 1px black;
   padding: 16px;
-  left: 15%;
   top: 30%;
   box-sizing: border-box;
-  .day-selector{
+  .day-selector {
     display: flex;
     flex-direction: column;
   }
-  form{
+  form {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
   }
+
   .btn-container {
     display: flex;
     flex-direction: row;
@@ -29,4 +30,45 @@
 
 button {
   margin: 10px;
+}
+
+@media (min-width: 1280px) and (max-width: 1366px){
+  .modal-form {
+    width: 680px;
+    display: flex;
+    flex-wrap: wrap;
+    top: 10%;
+  }
+}
+
+@media (min-width: 768px) and (max-width: 1024px) {
+  .modal-form {
+    width: 500px;
+    display: flex;
+    flex-wrap: wrap;
+  }
+}
+
+@media (min-width: 768px) and (max-width: 1024px) and (orientation: landscape) {
+  .modal-form {
+    width: 450px;
+    display: flex;
+    flex-wrap: wrap;
+  }
+}
+
+@media (min-width: 481px) and (max-width: 767px) {
+  .modal-form {
+    width: 380px;
+    display: flex;
+    flex-wrap: wrap;
+  }
+}
+
+@media (min-width: 320px) and (max-width: 480px) {
+  .modal-form {
+    width: 280px;
+    display: flex;
+    flex-wrap: wrap;
+  }
 }
