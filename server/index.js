@@ -30,7 +30,7 @@ app.get('/rooms', (req, res) => {
   });
 });
   
-app.get('/rooms/:name', (req, res) => {
+app.get('/room/:name', (req, res) => {
   const roomName = req.params.name;
   Room.findOne({ name: roomName }).populate('bookings').exec((err, room) => {
     if (err) {
@@ -40,7 +40,7 @@ app.get('/rooms/:name', (req, res) => {
   });
 });
 
-app.post('/rooms', (req, res) => {
+app.post('/book', (req, res) => {
   const { room, start, end } = req.body;
   const booking = new Booking({ start, end });
 
