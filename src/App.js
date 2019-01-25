@@ -20,16 +20,21 @@ class App extends Component {
   }
 
 
-  componentWillMount() {
+  componentDidMount() {
 
     fetch('http://localhost:3001/rooms')
       .then(res => {
         return res.json();
       })
       .then(data => {
-        console.log(data)
-      });
+        const events = data.map(event => {
+          return { "title": event.room, start: new Date(event.start), allDay: false, end: new Date(event.end), }
+        })
 
+        console.log(events)
+        //this.setState({ events: })
+        this.setState({ events: [...this.state.events, ...events] })
+      });
   }
 
   triggerFormModal() {
