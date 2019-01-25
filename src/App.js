@@ -31,8 +31,6 @@ class App extends Component {
           return { "title": event.room, start: new Date(event.start), allDay: false, end: new Date(event.end), }
         })
 
-        console.log(events)
-        //this.setState({ events: })
         this.setState({ events: [...this.state.events, ...events] })
       });
   }
