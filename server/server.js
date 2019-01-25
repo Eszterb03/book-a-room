@@ -27,9 +27,14 @@ app.get('/rooms', (req, res) => {
     Room.find({}).select('booking').exec((err, rooms) => {
         if (err) {
             console.log(err);
+        } else {
+            const roomElement = [];
+            rooms.forEach(element => {
+                roomElement.push(element)
+            });
+            res.json({ rooms: roomElement })
         }
-        res.json(rooms)
-    })
+    });
 })
 
 app.get('/rooms/:name', (req, res) => {
