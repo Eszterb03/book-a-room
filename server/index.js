@@ -36,6 +36,8 @@ app.get('/room/:name', controllers.getRoom);
 
 app.post('/book', controllers.createBooking);
 
+app.delete('/rooms/:id', controllers.deleteBooking);
+
 //authentication
 
 passport.use(new GoogleStrategy({

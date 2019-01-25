@@ -31,25 +31,35 @@ exports.getRoom = (req, res) => {
 }
 
 exports.createBooking = (req, res) => {
-  const { room, start, end } = req.body;
-  const booking = new Booking({ start, end });
+    const { room, start, end } = req.body;
+    const booking = new Booking({ start, end });
 
-  Room.findOne({ name: room })
-      .populate('bookings')
-      .exec(function(err, foundRoom) {
-        if (err) {
-          return res.status(400).send({ errors: [{ title: 'Error', detail: 'Error while searching for room' }] });
-        }
-        booking.room = foundRoom.name;
-        foundRoom.bookings.push(booking);
+    Room.findOne({ name: room })
+        .populate('bookings')
+        .exec(function(err, foundRoom) {
+            if (err) {
+                return res.status(400).send({ errors: [{ title: 'Error', detail: 'Error while searching for room' }] });
+            }
+            booking.room = foundRoom.name;
+            foundRoom.bookings.push(booking);
 
         booking.save(function(err){
           if (err) {
             return res.status(400).send({ errors: [{ title: 'Error', detail: 'Error while saving booking' }] });
           }
           foundRoom.save();
-
-          return res.json({ start: booking.start, end: booking.end, title: booking.title });
+                return res.json({ start: booking.start, end: booking.end, title: booking.title });
+            });
         });
-      });
 }
+
+exports.deleteBooking = (req, res) => {
+    const { id } = req.params
+    Room.findByIdAndDelete({ _id: id })
+        .then(room => {
+            res.status(201).json(room)
+        })
+        .catch(error => {
+            res.status(400).json({ error })
+        })
+};
