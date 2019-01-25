@@ -8,3 +8,4 @@ const db = mongojs('mongodb://Eszter:eszter2019@ds111455.mlab.com:11455/bookaroo
 
 const clientId = '297249123317-bhf732cn7r57eac3fk8bqp2976otj15u.apps.googleusercontent.com';
 const clientSecret = '7xk7sJbyF1MDASXmIhedjwxx';
+const redirect = 'http://localhost:3000/callback';
