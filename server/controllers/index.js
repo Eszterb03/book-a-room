@@ -2,11 +2,20 @@ const Room = require('../models/room');
 const Booking = require('../models/booking');
 
 exports.getRooms = (req, res) => {
-  Room.find({}).select('booking').populate('bookings').exec((err, rooms) => {
+  Room.find({}).select('booking').populate('bookings', '-_id -__v').select('-_id').exec((err, rooms) => {
     if (err) {
       return res.status(400).send({ errors: [{ title: 'Error', detail: 'Error while searching for room' }] });
     }
-    return res.json(rooms)
+    const meetingRooms = rooms.map(room => room.bookings);
+    const bookings = [];
+    for(let i = 0; i < meetingRooms.length; i++ ) {
+      if (meetingRooms[i].length > 0) {
+        for (let j = 0; j < meetingRooms[i].length; j++ ) {
+          bookings.push(meetingRooms[i][j]);
+        }
+      }
+    }
+    return res.json(bookings);
   });
 }
 
@@ -16,6 +25,7 @@ exports.getRoom = (req, res) => {
     if (err) {
       return res.status(400).send({ errors: [{ title: 'Error', detail: 'Error while searching for room' }] });
     }
+
     return res.json(room)
   });
 }
