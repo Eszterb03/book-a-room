@@ -32,6 +32,15 @@ button {
   margin: 10px;
 }
 
+@media screen and (max-width: 1366px) {
+  .modal-form {
+    width: 680px;
+    display: flex;
+    flex-wrap: wrap;
+    top: 15%;
+  }
+}
+
 @media (min-width: 768px) and (max-width: 1024px) {
   .modal-form {
     width: 500px;
