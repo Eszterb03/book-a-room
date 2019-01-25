@@ -8,12 +8,10 @@ export default class Header extends React.Component {
         <span className='navbar-element'><i className="icofont-fox"></i>Book-a-Room</span>
         <div className="container">
           <Button name="Silent Room" />
-          <Button name="Small" />
-          <Button name="Medium" />
-          <Button name="Large" />
+          <Button name="S Room" />
+          <Button name="M Room" />
+          <Button name="L Room" />
           <Button name="Meeting Room" />
-          <Button name="Meeting Room" />
-
         </div>
         <div>
           <span className='navbar-element'>Sign out</span>
