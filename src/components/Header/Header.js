@@ -5,7 +5,7 @@ export default class Header extends React.Component {
   render() {
     return (
       <nav className="navbar">
-        <span className='navbar-element'>Book-a-Room</span>
+        <span className='navbar-element'><i class="icofont-fox"></i>Book-a-Room</span>
         <div className="container">
           <Button name="Silent Room" />
           <Button name="Small" />

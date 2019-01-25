@@ -11,35 +11,25 @@ class App extends Component {
     this.state = {
       formModalOn: false,
       selectedDay: undefined,
-      events: [
-        {
-          title: 'ROOM L',
-          allDay: false,
-          start: new Date('Thu Jan 24 2019 14:00:00'),
-          end: new Date('Jan 24, 2019 15:00:00')
-        },
-        {
-          title: 'Silent Room',
-          allDay: false,
-          start: new Date(
-            'Fri Jan 26 2019 12:00:00 GMT+0100 (Central European Standard Time)'
-          ),
-          end: new Date('Jan 26, 2019 15:00:00')
-        },
-        {
-          title: 'Event Space',
-          allDay: false,
-          start: new Date(
-            '2019-01-26T16:00:00.000Z'
-          ),
-          end: new Date('2019-01-26T17:00:00.000Z')
-        }
-      ]
+      events: []
     };
     this.triggerFormModal = this.triggerFormModal.bind(this);
     this.handleDayClick = this.handleDayClick.bind(this);
     this.handleChange = this.handleChange.bind(this);
     this.handleFormSubmit = this.handleFormSubmit.bind(this);
+  }
+
+
+  componentWillMount() {
+
+    fetch('http://localhost:3001/rooms')
+      .then(res => {
+        return res.json();
+      })
+      .then(data => {
+        console.log(data)
+      });
+
   }
 
   triggerFormModal() {
